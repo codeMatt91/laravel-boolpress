@@ -4,6 +4,10 @@
             <div class="card mb-3" v-for="post in posts" :key="post.id">
                 <h3>{{post.title}}</h3>
                 <p>{{post.content}}</p>
+                <div class="d-flex justify-content-between">
+                    <div> Modificato il: {{ getDate() }}</div>
+                    <div></div>
+                </div>
             </div>
       </div>
       <div v-else>
@@ -26,6 +30,10 @@ methods: {
                
             this.posts = res.data;
         })
+    },
+    getDate(){
+        const d = new Date();
+        return d.toDateString(d);
     }
 },
 mounted() {
