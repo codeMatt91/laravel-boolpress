@@ -3,9 +3,7 @@
         <div class="justify-content-center">
                 <div>
                     <Header />
-                    <div>
-                        Stiamo lavorando per voi
-                    </div>
+                    <ViewPosts />
                 </div>
         </div>
     </div>
@@ -13,10 +11,14 @@
 
 <script>
 import Header from './Header.vue';
+import ViewPosts from '../components/Posts/ViewPosts.vue';
+
 export default{
     name: "App",
     components: {
         Header,
-    }
+        ViewPosts,
+    },
+   
 }
 </script>
