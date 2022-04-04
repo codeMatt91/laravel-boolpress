@@ -1,7 +1,7 @@
 <template>
   <div>
-      <div v-if="posts.lenght">
-            <div class="card" v-for="$post in $posts" :key="$post.id">
+      <div v-if="posts.length">
+            <div class="card" v-for="post in posts" :key="post.id">
                 <h3>{{post.title}}</h3>
                 <p>{{post.content}}</p>
             </div>
@@ -16,19 +16,20 @@
 export default {
 name: "ViewPosts",
 data() {
-        return {
-            $posts: [],
-        }
-    },
+    return {
+        posts: [],
+    }
+},
 methods: {
-        getPosts(){
-            axios.get('localhost:8888/api/posts').then(res => {
-                this.posts = res.data;
-            })
-        }
+    getPosts(){
+        axios.get('http://localhost:8000/api/posts').then(res => {
+               
+            this.posts = res.data;
+        })
+    }
 },
 mounted() {
-        this.getPosts();
+    this.getPosts();
 }
 }
 </script>

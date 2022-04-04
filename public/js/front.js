@@ -1981,14 +1981,14 @@ __webpack_require__.r(__webpack_exports__);
   name: "ViewPosts",
   data: function data() {
     return {
-      $posts: []
+      posts: []
     };
   },
   methods: {
     getPosts: function getPosts() {
       var _this = this;
 
-      axios.get('localhost:8888/api/posts').then(function (res) {
+      axios.get('http://localhost:8000/api/posts').then(function (res) {
         _this.posts = res.data;
       });
     }
@@ -37646,14 +37646,14 @@ var render = function () {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _vm.posts.lenght
+    _vm.posts.length
       ? _c(
           "div",
-          _vm._l(_vm.$posts, function ($post) {
-            return _c("div", { key: $post.id, staticClass: "card" }, [
-              _c("h3", [_vm._v(_vm._s(_vm.post.title))]),
+          _vm._l(_vm.posts, function (post) {
+            return _c("div", { key: post.id, staticClass: "card" }, [
+              _c("h3", [_vm._v(_vm._s(post.title))]),
               _vm._v(" "),
-              _c("p", [_vm._v(_vm._s(_vm.post.content))]),
+              _c("p", [_vm._v(_vm._s(post.content))]),
             ])
           }),
           0
