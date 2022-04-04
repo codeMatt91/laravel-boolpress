@@ -37586,7 +37586,7 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "container" }, [
+  return _c("div", { staticClass: "container mt-4" }, [
     _c("div", { staticClass: "justify-content-center" }, [
       _c("div", [_c("Header"), _vm._v(" "), _c("ViewPosts")], 1),
     ]),
@@ -37645,12 +37645,12 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
+  return _c("div", { staticClass: "mt-5" }, [
     _vm.posts.length
       ? _c(
           "div",
           _vm._l(_vm.posts, function (post) {
-            return _c("div", { key: post.id, staticClass: "card" }, [
+            return _c("div", { key: post.id, staticClass: "card mb-3" }, [
               _c("h3", [_vm._v(_vm._s(post.title))]),
               _vm._v(" "),
               _c("p", [_vm._v(_vm._s(post.content))]),

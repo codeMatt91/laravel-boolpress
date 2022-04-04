@@ -1,7 +1,7 @@
 <template>
-  <div>
+  <div class="mt-5">
       <div v-if="posts.length">
-            <div class="card" v-for="post in posts" :key="post.id">
+            <div class="card mb-3" v-for="post in posts" :key="post.id">
                 <h3>{{post.title}}</h3>
                 <p>{{post.content}}</p>
             </div>
