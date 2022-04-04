@@ -35,8 +35,8 @@
                             </td>
                             <td>
                                 @if ($post->category)
-                                    <a href="{{ route('admin.posts.category', $post->category_id) }}"><span
-                                            class="badge badge-{{ $post->category->color }}">{{ $post->category->label }}</span></a>
+                                    {{-- <a href="{{ route('admin.posts.category', $post->category_id) }}"> --}}<span
+                                        class="badge badge-{{ $post->category->color }}">{{ $post->category->label }}</span>{{-- </a> --}}
                                 @else
                                     -
                                 @endif

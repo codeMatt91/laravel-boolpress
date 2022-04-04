@@ -5,7 +5,7 @@
                 <h3>{{post.title}}</h3>
                 <p>{{post.content}}</p>
                 <div class="d-flex justify-content-between">
-                    <div> Modificato il: {{ getDate() }}</div>
+                    <div><strong> Modificato il:</strong> {{ getDate() }}</div>
                     <div></div>
                 </div>
             </div>
@@ -32,8 +32,11 @@ methods: {
         })
     },
     getDate(){
-        const d = new Date();
-        return d.toDateString(d);
+        const date = new Date(this.posts.updated_at);
+        let day = date.getDate();
+        let month = date.getMonth() + 1;
+        const year = date.getFullYear();
+        return `${day}/${month}/${year}`;
     }
 },
 mounted() {

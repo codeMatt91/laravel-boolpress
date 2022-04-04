@@ -136,7 +136,7 @@ class PostController extends Controller
     public function update(Request $request, Post $post)
     {
         $request->validate([
-            'title'=>['required','string', 'min:5', 'max:50'],
+            'title'=>['required','string','min:5', 'max:50'],
             'content'=>'required|string',
             'image'=>'nullable|image',
             'category_id' => 'nullable|exists:categories,id',
@@ -186,7 +186,7 @@ class PostController extends Controller
         return redirect()->route('admin.posts.index')->with('massage', "il post '$post->id' è stato eliminato")->with('type', 'success');
     }
 
-    public function category(Category $category){
+    /* public function category(Category $category){
         return view('admin.posts.category', compact('category'));
-    }
+    } */
 }

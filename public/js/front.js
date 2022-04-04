@@ -1997,8 +1997,11 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     getDate: function getDate() {
-      var d = new Date();
-      return d.toDateString(d);
+      var date = new Date(this.posts.updated_at);
+      var day = date.getDate();
+      var month = date.getMonth() + 1;
+      var year = date.getFullYear();
+      return "".concat(day, "/").concat(month, "/").concat(year);
     }
   },
   mounted: function mounted() {
@@ -37664,7 +37667,10 @@ var render = function () {
               _c("p", [_vm._v(_vm._s(post.content))]),
               _vm._v(" "),
               _c("div", { staticClass: "d-flex justify-content-between" }, [
-                _c("div", [_vm._v(" Modificato il: " + _vm._s(_vm.getDate()))]),
+                _c("div", [
+                  _c("strong", [_vm._v(" Modificato il:")]),
+                  _vm._v(" " + _vm._s(_vm.getDate())),
+                ]),
                 _vm._v(" "),
                 _c("div"),
               ]),
