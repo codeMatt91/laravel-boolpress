@@ -18,4 +18,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/posts', 'Api\PostController@index');
+// Qui gestisco tutte le rotte delle API. devo ricordarmi che anche se non lo scrivo, l'Uri comincia sempre con 'api/..'
+Route::namespace('Api')->group(function () {
+    Route::get('/posts', 'PostController@index');
+    Route::get('/posts/{id}', 'PostController@show');
+});

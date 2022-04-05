@@ -1974,6 +1974,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Post",
   props: ["post"],
@@ -1985,8 +1990,7 @@ __webpack_require__.r(__webpack_exports__);
       var year = d.getFullYear();
       var hours = d.getHours();
       var minutes = d.getMinutes();
-      var seconds = d.getSeconds();
-      return "".concat(day, "/").concat(month, "/").concat(year, " ").concat(hours, ":").concat(minutes, ":").concat(seconds);
+      return "".concat(day, "/").concat(month, "/").concat(year, " ").concat(hours, ":").concat(minutes);
     }
   }
 });
@@ -37691,23 +37695,47 @@ var render = function () {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "card m-2" }, [
+    _c("div", { staticClass: "card-header" }, [
+      _c("strong", [_vm._v(" Modificato il:")]),
+      _vm._v(" " + _vm._s(_vm.getDate)),
+    ]),
+    _vm._v(" "),
     _c("h3", [_vm._v(_vm._s(_vm.post.title))]),
     _vm._v(" "),
     _c("p", [_vm._v(_vm._s(_vm.post.content))]),
     _vm._v(" "),
     _c("div", { staticClass: "card-footer d-flex justify-content-between" }, [
       _c("div", [
-        _c("strong", [_vm._v(" Modificato il:")]),
-        _vm._v(" " + _vm._s(_vm.getDate)),
-      ]),
-      _vm._v(" "),
-      _c("div", [
+        _vm._v("Categoria:"),
         _c(
           "span",
           { class: "badge badge-pill badge-" + _vm.post.category.color },
           [_vm._v(_vm._s(_vm.post.category.label))]
         ),
       ]),
+      _vm._v(" "),
+      _c(
+        "div",
+        [
+          _vm._v("Tags: \n            "),
+          _vm._l(_vm.post.tags, function (tag) {
+            return _c(
+              "span",
+              {
+                key: tag.id,
+                staticClass: "badge badge-pill",
+                style: "background-color:" + tag.color,
+              },
+              [
+                _c("span", { staticStyle: { color: "white" } }, [
+                  _vm._v(_vm._s(tag.label)),
+                ]),
+              ]
+            )
+          }),
+        ],
+        2
+      ),
     ]),
   ])
 }

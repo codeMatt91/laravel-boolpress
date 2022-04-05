@@ -1,10 +1,15 @@
 <template>
     <div class="card m-2">
+        <div class="card-header"><strong> Modificato il:</strong> {{ getDate }}</div>
         <h3>{{post.title}}</h3>
         <p>{{post.content}}</p>
         <div class="card-footer d-flex justify-content-between">
-            <div><strong> Modificato il:</strong> {{ getDate }}</div>
-            <div><span :class="`badge badge-pill badge-${post.category.color}`">{{ post.category.label }}</span></div>
+            <div>Categoria:<span :class="`badge badge-pill badge-${post.category.color}`">{{ post.category.label }}</span></div>
+            <div>Tags: 
+                <span v-for="tag in post.tags" :key="tag.id" class="badge badge-pill" :style="`background-color:${tag.color}`">
+                    <span style="color:white">{{ tag.label }}</span>
+                </span>
+            </div>
          </div>
     </div>
 </template>
@@ -21,9 +26,8 @@ computed:{
         let year = d.getFullYear();
         const hours = d.getHours();
         const minutes = d.getMinutes();
-        const seconds = d.getSeconds();
 
-        return `${day}/${month}/${year} ${hours}:${minutes}:${seconds}`;
+        return `${day}/${month}/${year} ${hours}:${minutes}`;
     }
 },
 }
