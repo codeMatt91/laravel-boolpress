@@ -1,5 +1,6 @@
 <template>
   <div class="container">
+      <h1 class="mt-4">I miei Post</h1>
       <ViewPosts />
   </div>
 </template>

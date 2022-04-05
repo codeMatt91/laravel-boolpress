@@ -9,7 +9,7 @@ require('./bootstrap');
 
 window.Vue = require('vue');
 
-import router from './components/routes.js';
+import router from './route.js';
 import App from './components/App.vue';
 
 const root = new Vue({

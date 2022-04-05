@@ -1,12 +1,16 @@
 <template>
-    <div class="container mt-4">
+<div>
+     <header>
+        <Header />
+    </header>
+    <div class="container">
         <div class="justify-content-center">
-                <div>
-                    <Header />
-                    <router-view></router-view>
-                </div>
+            <main>
+                <router-view></router-view>
+            </main>
         </div>
     </div>
+</div>
 </template>
 
 <script>

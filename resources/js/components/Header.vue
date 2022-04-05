@@ -1,6 +1,10 @@
 <template>
   <div>
-      <h1> Benvenuti nei miei posts</h1>
+      <nav class="navbar navbar-dark bg-dark">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">Boolpress</a>
+        </div>
+      </nav>
   </div>
 </template>
 
