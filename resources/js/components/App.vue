@@ -3,7 +3,7 @@
         <div class="justify-content-center">
                 <div>
                     <Header />
-                    <ViewPosts />
+                    <router-view></router-view>
                 </div>
         </div>
     </div>

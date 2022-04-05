@@ -30,11 +30,8 @@ Route::middleware('auth')->prefix('admin')->name('admin.')->namespace('Admin')->
     })->where('any', '.*');
 });
 
-// Qui gestisco tutte le rotte con Vue
-/* Route::get('{any?}', function () {
+// Qui gestisco tutte le rotte con Vue. qualunque rotta che non inizia con /admin se la gestisce Vue
+Route::get('{any?}', function () {
     return view('guest.home');
-})->where("any", ".*"); */
+})->where("any", ".*");
 
-Route::get('/', function () {
-    return view('guest.home');
-});

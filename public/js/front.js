@@ -37637,7 +37637,7 @@ var render = function () {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "container mt-4" }, [
     _c("div", { staticClass: "justify-content-center" }, [
-      _c("div", [_c("Header"), _vm._v(" "), _c("ViewPosts")], 1),
+      _c("div", [_c("Header"), _vm._v(" "), _c("router-view")], 1),
     ]),
   ])
 }
@@ -50329,7 +50329,8 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _components_App_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./components/App.vue */ "./resources/js/components/App.vue");
+!(function webpackMissingModule() { var e = new Error("Cannot find module './components/routes.js'"); e.code = 'MODULE_NOT_FOUND'; throw e; }());
+/* harmony import */ var _components_App_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/App.vue */ "./resources/js/components/App.vue");
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -50339,10 +50340,12 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
 
+
 var root = new Vue({
   el: '#root',
+  router: !(function webpackMissingModule() { var e = new Error("Cannot find module './components/routes.js'"); e.code = 'MODULE_NOT_FOUND'; throw e; }()),
   render: function render(h) {
-    return h(_components_App_vue__WEBPACK_IMPORTED_MODULE_0__["default"]);
+    return h(_components_App_vue__WEBPACK_IMPORTED_MODULE_1__["default"]);
   }
 });
 
