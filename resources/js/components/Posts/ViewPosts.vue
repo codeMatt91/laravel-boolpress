@@ -1,12 +1,16 @@
 <template>
   <div class="mt-5">
       <div v-if="posts.length">
-            <div class="card mb-3" v-for="post in posts" :key="post.id">
-                <h3>{{post.title}}</h3>
-                <p>{{post.content}}</p>
-                <div class="d-flex justify-content-between">
-                    <div><strong> Modificato il:</strong> {{ getDate() }}</div>
-                    <div></div>
+            <div class="row">
+                <div class="col-6" v-for="post in posts" :key="post.id">
+                    <div class="card m-2">
+                        <h3>{{post.title}}</h3>
+                        <p>{{post.content}}</p>
+                        <div class="card-footer d-flex justify-content-between">
+                            <div><strong> Modificato il:</strong> {{ post.updated_at }}</div>
+                            <div><span :class="`badge badge-pill badge-${post.category.color}`">{{ post.category.label }}</span></div>
+                        </div>
+                    </div>
                 </div>
             </div>
       </div>
@@ -31,16 +35,19 @@ methods: {
             this.posts = res.data;
         })
     },
-    getDate(){
+},
+computed:{
+    /* getDate(){
         const date = new Date(this.posts.updated_at);
         let day = date.getDate();
         let month = date.getMonth() + 1;
-        const year = date.getFullYear();
+        let year = date.getFullYear();
         return `${day}/${month}/${year}`;
-    }
+    } */
 },
 mounted() {
     this.getPosts();
+    
 }
 }
 </script>

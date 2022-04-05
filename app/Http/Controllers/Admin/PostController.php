@@ -186,7 +186,7 @@ class PostController extends Controller
         return redirect()->route('admin.posts.index')->with('massage', "il post '$post->id' è stato eliminato")->with('type', 'success');
     }
 
-    /* public function category(Category $category){
+    public function category(Category $category){
         return view('admin.posts.category', compact('category'));
-    } */
+    }
 }

@@ -1981,6 +1981,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "ViewPosts",
   data: function data() {
@@ -1995,14 +1999,16 @@ __webpack_require__.r(__webpack_exports__);
       axios.get('http://localhost:8000/api/posts').then(function (res) {
         _this.posts = res.data;
       });
-    },
-    getDate: function getDate() {
-      var date = new Date(this.posts.updated_at);
-      var day = date.getDate();
-      var month = date.getMonth() + 1;
-      var year = date.getFullYear();
-      return "".concat(day, "/").concat(month, "/").concat(year);
     }
+  },
+  computed: {
+    /* getDate(){
+        const date = new Date(this.posts.updated_at);
+        let day = date.getDate();
+        let month = date.getMonth() + 1;
+        let year = date.getFullYear();
+        return `${day}/${month}/${year}`;
+    } */
   },
   mounted: function mounted() {
     this.getPosts();
@@ -37658,26 +37664,46 @@ var render = function () {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "mt-5" }, [
     _vm.posts.length
-      ? _c(
-          "div",
-          _vm._l(_vm.posts, function (post) {
-            return _c("div", { key: post.id, staticClass: "card mb-3" }, [
-              _c("h3", [_vm._v(_vm._s(post.title))]),
-              _vm._v(" "),
-              _c("p", [_vm._v(_vm._s(post.content))]),
-              _vm._v(" "),
-              _c("div", { staticClass: "d-flex justify-content-between" }, [
-                _c("div", [
-                  _c("strong", [_vm._v(" Modificato il:")]),
-                  _vm._v(" " + _vm._s(_vm.getDate())),
+      ? _c("div", [
+          _c(
+            "div",
+            { staticClass: "row" },
+            _vm._l(_vm.posts, function (post) {
+              return _c("div", { key: post.id, staticClass: "col-6" }, [
+                _c("div", { staticClass: "card m-2" }, [
+                  _c("h3", [_vm._v(_vm._s(post.title))]),
+                  _vm._v(" "),
+                  _c("p", [_vm._v(_vm._s(post.content))]),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    {
+                      staticClass: "card-footer d-flex justify-content-between",
+                    },
+                    [
+                      _c("div", [
+                        _c("strong", [_vm._v(" Modificato il:")]),
+                        _vm._v(" " + _vm._s(post.updated_at)),
+                      ]),
+                      _vm._v(" "),
+                      _c("div", [
+                        _c(
+                          "span",
+                          {
+                            class:
+                              "badge badge-pill badge-" + post.category.color,
+                          },
+                          [_vm._v(_vm._s(post.category.label))]
+                        ),
+                      ]),
+                    ]
+                  ),
                 ]),
-                _vm._v(" "),
-                _c("div"),
-              ]),
-            ])
-          }),
-          0
-        )
+              ])
+            }),
+            0
+          ),
+        ])
       : _c("div", [_c("h2", [_vm._v("Non ci sono post ")])]),
   ])
 }
@@ -50186,7 +50212,7 @@ var root = new Vue({
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/matteoimbimbo/Desktop/laravel-boolpress/resources/js/front.js */"./resources/js/front.js");
+module.exports = __webpack_require__(/*! /Users/matteoimbimbo/Desktop/Laravel/laravel-boolpress/resources/js/front.js */"./resources/js/front.js");
 
 
 /***/ })

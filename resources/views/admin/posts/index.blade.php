@@ -35,8 +35,8 @@
                             </td>
                             <td>
                                 @if ($post->category)
-                                    {{-- <a href="{{ route('admin.posts.category', $post->category_id) }}"> --}}<span
-                                        class="badge badge-{{ $post->category->color }}">{{ $post->category->label }}</span>{{-- </a> --}}
+                                    <a href="{{ route('admin.posts.category', $post->category_id) }}"><span
+                                            class="badge badge-{{ $post->category->color }}">{{ $post->category->label }}</span></a>
                                 @else
                                     -
                                 @endif
@@ -44,7 +44,7 @@
                             <td>
                                 @if ($post->tags)
                                     @forelse ($post->tags as $tag)
-                                        <div class="badge" style="background-color: {{ $tag->color }} "> <span
+                                        <div class="badge m-1" style="background-color: {{ $tag->color }} "> <span
                                                 style="color:white"> {{ $tag->label }}</span></div>
                                     @empty -
                                     @endforelse

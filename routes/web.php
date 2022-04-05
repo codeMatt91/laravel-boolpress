@@ -21,7 +21,7 @@ Route::middleware('auth')->prefix('admin')->name('admin.')->namespace('Admin')->
     Route::get('/', 'HomeController@index')->name('home');
 
     // Qui gestisco la rotta per vedere i post di una specifica categoria
-    Route::get('/posts/{category}', 'PostController@category')->name('posts.category'); 
+    Route::get('/posts/{category}/posts', 'PostController@category')->name('posts.category'); 
     
     Route::resource('posts', 'PostController');
     //In questa rotta faccio si che se scrivo sull-url 'admin/qualsiasi cosa' mi manda in 404 e non su Vue
