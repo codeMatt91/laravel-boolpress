@@ -33,6 +33,9 @@ computed:{
 }
 </script>
 
-<style>
-
+<style scoped>
+.card-header,
+.card-footer {
+    background-color: rgb(193, 191, 191);
+}
 </style>

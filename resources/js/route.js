@@ -16,6 +16,7 @@ const router = new VueRouter({
     mode: 'history', // Serve a simulare la pagina web e mi permette di navigare come in un browsers
 
     // Qui elenco tutte le mie rotte, il path è l'url e il component: punta al mio componente
+    // occhio all'ordine in cui le metti
     routes: [
         {path: '/', component: HomePage},
         {path: '/contacts', component: ContactPage},

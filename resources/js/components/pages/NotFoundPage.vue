@@ -9,6 +9,8 @@ export default {
 name: "NotFoundPage",
 }
 </script>
-<style>
-
+<style scoped >
+.container{
+  height: 100vh;
+}
 </style>
