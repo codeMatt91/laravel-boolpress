@@ -9,6 +9,7 @@ Vue.use(VueRouter)
 import HomePage from './components/pages/HomePage.vue';
 import ContactPage from './components/pages/ContactPage.vue';
 import NotFoundPage from './components/pages/NotFoundPage.vue';
+import PostDetail from './components/pages/PostDetail.vue';
 
 
 // Inizializziamo una nuovo VueRouter
@@ -20,6 +21,7 @@ const router = new VueRouter({
     routes: [
         {path: '/', component: HomePage},
         {path: '/contacts', component: ContactPage},
+        {path: '/posts/:id', component: PostDetail, name:'post-detail'},
         {path:'*', component: NotFoundPage}
     ],
 });
