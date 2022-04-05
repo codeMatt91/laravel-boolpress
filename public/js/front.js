@@ -2011,6 +2011,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Post",
   props: ["post"],
@@ -2040,9 +2041,6 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Post_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Post.vue */ "./resources/js/components/Posts/Post.vue");
-//
-//
-//
 //
 //
 //
@@ -38775,9 +38773,11 @@ var render = function () {
                 style: "background-color:" + tag.color,
               },
               [
-                _c("span", { staticStyle: { color: "white" } }, [
-                  _vm._v(_vm._s(tag.label)),
-                ]),
+                tag
+                  ? _c("span", { staticStyle: { color: "white" } }, [
+                      _vm._v(_vm._s(tag.label)),
+                    ])
+                  : _c("span", [_vm._v("Nessun tag")]),
               ]
             )
           }),
@@ -38826,7 +38826,7 @@ var render = function () {
             0
           ),
         ])
-      : _c("div", [_c("h2", [_vm._v("Non ci sono post ")])]),
+      : _vm._e(),
   ])
 }
 var staticRenderFns = []

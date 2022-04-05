@@ -13,8 +13,9 @@
         <div class="card-footer d-flex justify-content-between">
             <div>Categoria:<span :class="`badge badge-pill badge-${post.category.color}`">{{ post.category.label }}</span></div>
             <div>Tags: 
-                <span v-for="tag in post.tags" :key="tag.id" class="badge badge-pill" :style="`background-color:${tag.color}`">
-                    <span style="color:white">{{ tag.label }}</span>
+                <span  v-for="tag in post.tags" :key="tag.id" class="badge badge-pill" :style="`background-color:${tag.color}`">
+                    <span v-if="tag" style="color:white">{{ tag.label }}</span>
+                    <span v-else>Nessun tag</span>
                 </span>
             </div>
          </div>

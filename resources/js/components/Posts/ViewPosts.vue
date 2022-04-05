@@ -7,9 +7,6 @@
                 </div>
             </div>
       </div>
-      <div v-else>
-          <h2>Non ci sono post </h2>
-      </div>
   </div>
 </template>
 
