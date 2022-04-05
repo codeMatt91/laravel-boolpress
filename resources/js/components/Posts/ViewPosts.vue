@@ -3,14 +3,7 @@
       <div v-if="posts.length">
             <div class="row">
                 <div class="col-6" v-for="post in posts" :key="post.id">
-                    <div class="card m-2">
-                        <h3>{{post.title}}</h3>
-                        <p>{{post.content}}</p>
-                        <div class="card-footer d-flex justify-content-between">
-                            <div><strong> Modificato il:</strong> {{ post.updated_at }}</div>
-                            <div><span :class="`badge badge-pill badge-${post.category.color}`">{{ post.category.label }}</span></div>
-                        </div>
-                    </div>
+                <Post  :post="post" />
                 </div>
             </div>
       </div>
@@ -21,8 +14,10 @@
 </template>
 
 <script>
+import Post from "./Post.vue"
 export default {
 name: "ViewPosts",
+components: {Post},
 data() {
     return {
         posts: [],
@@ -36,19 +31,9 @@ methods: {
         })
     },
 },
-computed:{
-    /* getDate(){
-        const date = new Date(this.posts.updated_at);
-        let day = date.getDate();
-        let month = date.getMonth() + 1;
-        let year = date.getFullYear();
-        return `${day}/${month}/${year}`;
-    } */
-},
 mounted() {
     this.getPosts();
-    
-}
+    },
 }
 </script>
 
