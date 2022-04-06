@@ -1973,6 +1973,24 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Header"
 });
@@ -2012,6 +2030,18 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Post",
   props: ["post"],
@@ -2022,7 +2052,7 @@ __webpack_require__.r(__webpack_exports__);
       var month = d.getMonth() + 1;
       var year = d.getFullYear();
       /*  const hours = d.getHours();
-       const minutes = d.getMinutes(); */
+      const minutes = d.getMinutes(); */
 
       return "".concat(day, "/").concat(month, "/").concat(year, " "); // se voglio aggiungere anche l'ora ${hours}:${minutes}
     }
@@ -2068,7 +2098,7 @@ __webpack_require__.r(__webpack_exports__);
     getPosts: function getPosts() {
       var _this = this;
 
-      axios.get('http://localhost:8000/api/posts').then(function (res) {
+      axios.get("http://localhost:8000/api/posts").then(function (res) {
         _this.posts = res.data;
       });
     }
@@ -2089,6 +2119,9 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
 //
 //
 //
@@ -2140,6 +2173,8 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
 //
 //
 //
@@ -6578,7 +6613,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\na[data-v-1f42fb90] {\n  color: white;\n}\n.router-link-exact-active[data-v-1f42fb90]{\n  color: white;\n}\n", ""]);
+exports.push([module.i, "\na[data-v-1f42fb90] {\n    color: white;\n}\n.router-link-exact-active[data-v-1f42fb90] {\n    color: white;\n}\n", ""]);
 
 // exports
 
@@ -6597,7 +6632,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.card[data-v-4b2047b2],\n.card-header[data-v-4b2047b2],\n.card-footer[data-v-4b2047b2] {\n    background-color: rgb(155, 155, 155);\n    color: white;\n}\n\n", ""]);
+exports.push([module.i, "\n.card[data-v-4b2047b2],\n.card-header[data-v-4b2047b2],\n.card-footer[data-v-4b2047b2] {\n    background-color: rgb(155, 155, 155);\n    color: white;\n}\n", ""]);
 
 // exports
 
@@ -6616,7 +6651,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.container[data-v-302b2534]{\n  height: 100vh;\n}\n", ""]);
+exports.push([module.i, "\n.container[data-v-302b2534] {\n    height: 100vh;\n}\n", ""]);
 
 // exports
 
@@ -38639,7 +38674,7 @@ var render = function () {
                     _c(
                       "router-link",
                       {
-                        staticClass: "nav-link ",
+                        staticClass: "nav-link",
                         attrs: { "aria-current": "page", to: "/" },
                       },
                       [_vm._v("Home")]
@@ -38735,12 +38770,12 @@ var render = function () {
             staticClass: "btn btn-success rounded",
             attrs: { to: { name: "post-detail", params: { id: _vm.post.id } } },
           },
-          [_vm._v("\n        Vedi\n        ")]
+          [_vm._v("\n            Vedi\n        ")]
         ),
         _vm._v(" "),
         _c("div", [
           _c("strong", [_vm._v(" Modificato il:")]),
-          _vm._v(" " + _vm._s(_vm.getDate) + "\n        "),
+          _vm._v(" " + _vm._s(_vm.getDate)),
         ]),
       ],
       1
@@ -38748,11 +38783,11 @@ var render = function () {
     _vm._v(" "),
     _c("h3", [_vm._v(_vm._s(_vm.post.title))]),
     _vm._v(" "),
-    _c("p", [_vm._v(_vm._s(_vm.post.content) + " ")]),
+    _c("p", [_vm._v(_vm._s(_vm.post.content))]),
     _vm._v(" "),
     _c("div", { staticClass: "card-footer d-flex justify-content-between" }, [
       _c("div", [
-        _vm._v("Categoria:"),
+        _vm._v("\n            Categoria:"),
         _c(
           "span",
           { class: "badge badge-pill badge-" + _vm.post.category.color },
@@ -38763,7 +38798,7 @@ var render = function () {
       _c(
         "div",
         [
-          _vm._v("Tags: \n            "),
+          _vm._v("\n            Tags:\n            "),
           _vm._l(_vm.post.tags, function (tag) {
             return _c(
               "span",
@@ -38863,7 +38898,7 @@ var staticRenderFns = [
       _vm._v(" "),
       _c("p", [
         _vm._v(
-          "\n        Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat enim sapiente cumque exercitationem necessitatibus, asperiores repellat veritatis magni nihil assumenda laboriosam vel, a voluptatum, sed praesentium nobis architecto non. Corrupti?\n    "
+          "\n        Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat enim\n        sapiente cumque exercitationem necessitatibus, asperiores repellat\n        veritatis magni nihil assumenda laboriosam vel, a voluptatum, sed\n        praesentium nobis architecto non. Corrupti?\n    "
         ),
       ]),
     ])
