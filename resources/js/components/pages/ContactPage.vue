@@ -1,8 +1,14 @@
 <template>
     <div class="mt-5">
         <h2>Contattaci</h2>
-        <Alert v-if="alertMessage" type="success" />
-        <section class="contact-form">
+
+        <!-- Messaggio -->
+        <div v-if="hasErrors || alertMessage">
+            <Alert v-if="hasErrors" type="danger" :message="errors" />
+            <Alert v-else type="success" :message="alertMessage" />
+        </div>
+
+        <section v-else class="contact-form">
             <div class="form-group">
                 <label for="email">Email</label>
                 <input
@@ -34,6 +40,7 @@
 
 <script>
 import Alert from "./Alert.vue";
+/* import _ from "lodash"; */
 export default {
     name: "ContactPage",
     components: {
@@ -45,6 +52,7 @@ export default {
                 email: "",
                 message: "",
             },
+            errors: {},
             alertMessage: "",
         };
     },
@@ -58,8 +66,20 @@ export default {
                     this.form.messege = "";
                     this.alertMessage = "Messaggio inviato con successo";
                 })
-                .catch((err) => {})
+                .catch((err) => {
+                    console.log(err.response.statusCode);
+                    this.errors = "Si è verificato un errore";
+                })
                 .then(() => {});
+        },
+    },
+    computed: {
+        hasErrors() {
+            /*  Restituisce un array con le chiavi di un oggetto */
+            return Object.keys(this.errors).length;
+
+            /* Usando la libreria lodash controllo se nell'oggetto errors ci sono chiavi */
+            /* return _isEmpty(this.erros); */
         },
     },
 };
