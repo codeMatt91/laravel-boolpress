@@ -1,6 +1,7 @@
 <template>
     <div class="mt-5">
         <h2>Contattaci</h2>
+        <Alert v-if="alertMessage" type="success" />
         <section class="contact-form">
             <div class="form-group">
                 <label for="email">Email</label>
@@ -32,8 +33,12 @@
 </template>
 
 <script>
+import Alert from "./Alert.vue";
 export default {
     name: "ContactPage",
+    components: {
+        Alert,
+    },
     data() {
         return {
             form: {
