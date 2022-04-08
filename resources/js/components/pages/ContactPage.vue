@@ -3,33 +3,48 @@
         <h2>Contattaci</h2>
 
         <!-- Messaggio -->
-        <div v-if="hasErrors || alertMessage">
-            <Alert v-if="hasErrors" type="danger" :message="errors" />
-            <Alert v-else type="success" :message="alertMessage" />
+        <div>
+            <Alert v-if="hasErrors" type="danger" :errors="errors" />
+            <Alert
+                v-else-if="alertMessage"
+                type="success"
+                :message="alertMessage"
+            />
         </div>
 
-        <section v-else class="contact-form">
+        <section class="contact-form">
             <div class="form-group">
                 <label for="email">Email</label>
                 <input
                     type="email"
                     class="form-control"
+                    :class="{ 'is-invalid': errors.email }"
                     id="email"
                     aria-describedby="emailHelp"
                     v-model="form.email"
                 />
-                <small id="emailHelp" class="form-text text-muted"
+                <small
+                    v-if="!errors.email"
+                    id="emailHelp"
+                    class="form-text text-muted"
                     >Ti contatteremo a questo indirizzo.</small
                 >
+                <small v-else class="invalid-feedback">{{
+                    errors.email
+                }}</small>
             </div>
             <div class="form-group">
                 <label for="message">Messaggio</label>
                 <textarea
                     class="form-control"
+                    :class="{ 'is-invalid': errors.message }"
                     id="message"
                     rows="10"
                     v-model="form.message"
                 ></textarea>
+                <small v-if="errors.message" class="invalid-feedback">{{
+                    errors.message
+                }}</small>
             </div>
             <div class="d-flex justify-content-end">
                 <button class="btn-secondary" @click="sendForm">Invia</button>
@@ -58,7 +73,18 @@ export default {
     },
     methods: {
         sendForm() {
-            console.log("ciao");
+            // Controllo se il form non ha i valori email o messagge, creo due errori distinti
+            const errors = {};
+            if (!this.form.email.trim())
+                errors.email = "La mail è obbligatoria";
+            if (!this.form.message.trim())
+                errors.message = "Devi inserire un messaggio";
+            // Controllo che sia una mail valida
+            if (this.form.email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/))
+                errors.email = "La mail non è valida";
+
+            this.errors = errors;
+
             axios
                 .post("http://localhost:8000/api/message", this.form)
                 .then((res) => {

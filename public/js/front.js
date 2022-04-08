@@ -2134,6 +2134,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Alert",
   props: ["message", "type", "errors"]
@@ -2151,6 +2153,21 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Alert_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Alert.vue */ "./resources/js/components/pages/Alert.vue");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -2213,7 +2230,13 @@ __webpack_require__.r(__webpack_exports__);
     sendForm: function sendForm() {
       var _this = this;
 
-      console.log("ciao");
+      // Controllo se il form non ha i valori email o messagge, creo due errori distinti
+      var errors = {};
+      if (!this.form.email.trim()) errors.email = "La mail è obbligatoria";
+      if (!this.form.message.trim()) errors.message = "Devi inserire un messaggio"; // Controllo che sia una mail valida
+
+      if (this.form.email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) errors.email = "La mail non è valida";
+      this.errors = errors;
       axios.post("http://localhost:8000/api/message", this.form).then(function (res) {
         _this.form.email = "";
         _this.form.messege = "";
@@ -39047,8 +39070,13 @@ var render = function () {
           [
             _c(
               "ul",
+              { staticClass: "list-unstyled" },
               _vm._l(_vm.errors, function (error, key) {
-                return _c("li", { key: key }, [_vm._v(_vm._s(error))])
+                return _c("li", { key: key }, [
+                  _vm._v(
+                    "\n                " + _vm._s(error) + "\n            "
+                  ),
+                ])
               }),
               0
             ),
@@ -39090,92 +39118,106 @@ var render = function () {
   return _c("div", { staticClass: "mt-5" }, [
     _c("h2", [_vm._v("Contattaci")]),
     _vm._v(" "),
-    _vm.hasErrors || _vm.alertMessage
-      ? _c(
-          "div",
-          [
-            _vm.hasErrors
-              ? _c("Alert", { attrs: { type: "danger", message: _vm.errors } })
-              : _c("Alert", {
-                  attrs: { type: "success", message: _vm.alertMessage },
-                }),
+    _c(
+      "div",
+      [
+        _vm.hasErrors
+          ? _c("Alert", { attrs: { type: "danger", errors: _vm.errors } })
+          : _vm.alertMessage
+          ? _c("Alert", {
+              attrs: { type: "success", message: _vm.alertMessage },
+            })
+          : _vm._e(),
+      ],
+      1
+    ),
+    _vm._v(" "),
+    _c("section", { staticClass: "contact-form" }, [
+      _c("div", { staticClass: "form-group" }, [
+        _c("label", { attrs: { for: "email" } }, [_vm._v("Email")]),
+        _vm._v(" "),
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.form.email,
+              expression: "form.email",
+            },
           ],
-          1
-        )
-      : _c("section", { staticClass: "contact-form" }, [
-          _c("div", { staticClass: "form-group" }, [
-            _c("label", { attrs: { for: "email" } }, [_vm._v("Email")]),
-            _vm._v(" "),
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.form.email,
-                  expression: "form.email",
-                },
-              ],
-              staticClass: "form-control",
-              attrs: {
-                type: "email",
-                id: "email",
-                "aria-describedby": "emailHelp",
-              },
-              domProps: { value: _vm.form.email },
-              on: {
-                input: function ($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.$set(_vm.form, "email", $event.target.value)
-                },
-              },
-            }),
-            _vm._v(" "),
-            _c(
+          staticClass: "form-control",
+          class: { "is-invalid": _vm.errors.email },
+          attrs: {
+            type: "email",
+            id: "email",
+            "aria-describedby": "emailHelp",
+          },
+          domProps: { value: _vm.form.email },
+          on: {
+            input: function ($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.$set(_vm.form, "email", $event.target.value)
+            },
+          },
+        }),
+        _vm._v(" "),
+        !_vm.errors.email
+          ? _c(
               "small",
               {
                 staticClass: "form-text text-muted",
                 attrs: { id: "emailHelp" },
               },
               [_vm._v("Ti contatteremo a questo indirizzo.")]
-            ),
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "form-group" }, [
-            _c("label", { attrs: { for: "message" } }, [_vm._v("Messaggio")]),
-            _vm._v(" "),
-            _c("textarea", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.form.message,
-                  expression: "form.message",
-                },
-              ],
-              staticClass: "form-control",
-              attrs: { id: "message", rows: "10" },
-              domProps: { value: _vm.form.message },
-              on: {
-                input: function ($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.$set(_vm.form, "message", $event.target.value)
-                },
-              },
-            }),
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "d-flex justify-content-end" }, [
-            _c(
-              "button",
-              { staticClass: "btn-secondary", on: { click: _vm.sendForm } },
-              [_vm._v("Invia")]
-            ),
-          ]),
-        ]),
+            )
+          : _c("small", { staticClass: "invalid-feedback" }, [
+              _vm._v(_vm._s(_vm.errors.email)),
+            ]),
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "form-group" }, [
+        _c("label", { attrs: { for: "message" } }, [_vm._v("Messaggio")]),
+        _vm._v(" "),
+        _c("textarea", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.form.message,
+              expression: "form.message",
+            },
+          ],
+          staticClass: "form-control",
+          class: { "is-invalid": _vm.errors.message },
+          attrs: { id: "message", rows: "10" },
+          domProps: { value: _vm.form.message },
+          on: {
+            input: function ($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.$set(_vm.form, "message", $event.target.value)
+            },
+          },
+        }),
+        _vm._v(" "),
+        _vm.errors.message
+          ? _c("small", { staticClass: "invalid-feedback" }, [
+              _vm._v(_vm._s(_vm.errors.message)),
+            ])
+          : _vm._e(),
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "d-flex justify-content-end" }, [
+        _c(
+          "button",
+          { staticClass: "btn-secondary", on: { click: _vm.sendForm } },
+          [_vm._v("Invia")]
+        ),
+      ]),
+    ]),
   ])
 }
 var staticRenderFns = []
