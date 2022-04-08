@@ -73,30 +73,37 @@ export default {
     },
     methods: {
         sendForm() {
-            // Controllo se il form non ha i valori email o messagge, creo due errori distinti
+            // Controllo se il form non ha i valori email o messagge, creo due errori distinti.
+            //E importante perchè devo svuotare gli errori ogni volta che avvia la pagina sennò l'array degli errori rimarrebbe pieno e la chiamata non partirebbe mai
             const errors = {};
             if (!this.form.email.trim())
                 errors.email = "La mail è obbligatoria";
             if (!this.form.message.trim())
                 errors.message = "Devi inserire un messaggio";
             // Controllo che sia una mail valida
-            if (this.form.email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/))
+            if (
+                this.form.email &&
+                this.form.email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)
+            )
                 errors.email = "La mail non è valida";
 
             this.errors = errors;
 
-            axios
-                .post("http://localhost:8000/api/message", this.form)
-                .then((res) => {
-                    this.form.email = "";
-                    this.form.messege = "";
-                    this.alertMessage = "Messaggio inviato con successo";
-                })
-                .catch((err) => {
-                    console.log(err.response.statusCode);
-                    this.errors = "Si è verificato un errore";
-                })
-                .then(() => {});
+            // Questo controllo fa partire la chiamata solo se l'array degli errori è vuoto
+            if (!this.hasErrors) {
+                axios
+                    .post("http://localhost:8000/api/message", this.form)
+                    .then((res) => {
+                        this.form.email = "";
+                        this.form.messege = "";
+                        this.alertMessage = "Messaggio inviato con successo";
+                    })
+                    .catch((err) => {
+                        console.log(err.response.statusCode);
+                        this.errors = "Si è verificato un errore";
+                    })
+                    .then(() => {});
+            }
         },
     },
     computed: {

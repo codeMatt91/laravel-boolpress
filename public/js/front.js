@@ -2230,21 +2230,25 @@ __webpack_require__.r(__webpack_exports__);
     sendForm: function sendForm() {
       var _this = this;
 
-      // Controllo se il form non ha i valori email o messagge, creo due errori distinti
+      // Controllo se il form non ha i valori email o messagge, creo due errori distinti.
+      //E importante perchè devo svuotare gli errori ogni volta che avvia la pagina sennò l'array degli errori rimarrebbe pieno e la chiamata non partirebbe mai
       var errors = {};
       if (!this.form.email.trim()) errors.email = "La mail è obbligatoria";
       if (!this.form.message.trim()) errors.message = "Devi inserire un messaggio"; // Controllo che sia una mail valida
 
-      if (this.form.email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) errors.email = "La mail non è valida";
-      this.errors = errors;
-      axios.post("http://localhost:8000/api/message", this.form).then(function (res) {
-        _this.form.email = "";
-        _this.form.messege = "";
-        _this.alertMessage = "Messaggio inviato con successo";
-      })["catch"](function (err) {
-        console.log(err.response.statusCode);
-        _this.errors = "Si è verificato un errore";
-      }).then(function () {});
+      if (this.form.email && this.form.email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) errors.email = "La mail non è valida";
+      this.errors = errors; // Questo controllo fa partire la chiamata solo se l'array degli errori è vuoto
+
+      if (!this.hasErrors) {
+        axios.post("http://localhost:8000/api/message", this.form).then(function (res) {
+          _this.form.email = "";
+          _this.form.messege = "";
+          _this.alertMessage = "Messaggio inviato con successo";
+        })["catch"](function (err) {
+          console.log(err.response.statusCode);
+          _this.errors = "Si è verificato un errore";
+        }).then(function () {});
+      }
     }
   },
   computed: {
