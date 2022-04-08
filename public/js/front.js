@@ -2236,7 +2236,7 @@ __webpack_require__.r(__webpack_exports__);
       if (!this.form.email.trim()) errors.email = "La mail è obbligatoria";
       if (!this.form.message.trim()) errors.message = "Devi inserire un messaggio"; // Controllo che sia una mail valida
 
-      if (this.form.email && this.form.email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) errors.email = "La mail non è valida";
+      if (this.form.email && !this.form.email.match(/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)) errors.email = "La mail non è valida";
       this.errors = errors; // Questo controllo fa partire la chiamata solo se l'array degli errori è vuoto
 
       if (!this.hasErrors) {
@@ -2246,7 +2246,9 @@ __webpack_require__.r(__webpack_exports__);
           _this.alertMessage = "Messaggio inviato con successo";
         })["catch"](function (err) {
           console.log(err.response.statusCode);
-          _this.errors = "Si è verificato un errore";
+          _this.errors = {
+            error: "Si è verificato un errore"
+          };
         }).then(function () {});
       }
     }

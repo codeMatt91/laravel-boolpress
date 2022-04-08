@@ -83,7 +83,9 @@ export default {
             // Controllo che sia una mail valida
             if (
                 this.form.email &&
-                this.form.email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)
+                !this.form.email.match(
+                    /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+                )
             )
                 errors.email = "La mail non è valida";
 
@@ -100,7 +102,7 @@ export default {
                     })
                     .catch((err) => {
                         console.log(err.response.statusCode);
-                        this.errors = "Si è verificato un errore";
+                        this.errors = { error: "Si è verificato un errore" };
                     })
                     .then(() => {});
             }
